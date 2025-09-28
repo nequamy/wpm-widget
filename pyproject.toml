@@ -1,0 +1,39 @@
+[project]
+name = "wpm-widget"
+version = "0.1.0"
+description = "WPM tracking widget for macOS"
+readme = "README.md"
+authors = [
+    { name = "nequamy", email = "nequamy@gmail.com" }
+]
+requires-python = ">=3.9"
+
+dependencies = [
+    "matplotlib>=3.9.4",
+    "pynput>=1.8.1",
+    "pyqt6>=6.9.1",
+    "rumps>=0.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+]
+
+[tool.black]
+  line-length = 88
+  target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+
+[project.scripts]
+wpm-widget = "wpm_widget.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
