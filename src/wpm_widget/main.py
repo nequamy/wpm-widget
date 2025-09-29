@@ -1,11 +1,9 @@
-from wpm_widget._core import DataStorage, KeyboardMonitor, WPMCalculator
+from wpm_widget.gui import MenuBarApp
 
 
 def main(*args, **kwargs):
-    calculator = WPMCalculator()
-    storage = DataStorage()
-    monitor = KeyboardMonitor(calculator=calculator, storage=storage)
-    monitor.start_monitoring()
+    app = MenuBarApp()
+    app.run()
 
 
 if __name__ == "__main__":

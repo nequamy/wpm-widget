@@ -1,4 +1,3 @@
-from wpm_widget.gui.menubar import MenuBAR
-from wpm_widget.gui.widget import Widget
+from wpm_widget.gui.menubar import MenuBarApp
 
-__all__: list[str] = ["MenuBAR", "Widget"]
+__all__: list[str] = ["MenuBarApp"]

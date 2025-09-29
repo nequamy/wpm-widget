@@ -147,8 +147,7 @@ class DataStorage:
         result = cursor.fetchone()[0]
 
         if result:
-            if result != 0:
-                self.save_wpm(wpm=result, format="minute")
+            self.save_wpm(wpm=result, format="minute")
             self._cleanup_data(start, end, "elapsed")
 
     def _aggregate_last_hour(self) -> None:
@@ -165,8 +164,7 @@ class DataStorage:
         result = cursor.fetchone()[0]
 
         if result:
-            if result != 0:
-                self.save_wpm(wpm=result, format="hour")
+            self.save_wpm(wpm=result, format="hour")
             self._cleanup_data(start, end, "minute")
 
     def _aggregate_last_day(self) -> None:
@@ -183,8 +181,7 @@ class DataStorage:
         result = cursor.fetchone()[0]
 
         if result:
-            if result != 0:
-                self.save_wpm(wpm=result, format="day")
+            self.save_wpm(wpm=result, format="day")
             self._cleanup_data(start, end, "hour")
 
     def _aggregate_last_week(self) -> None:
@@ -204,8 +201,7 @@ class DataStorage:
         result = cursor.fetchone()[0]
 
         if result:
-            if result != 0:
-                self.save_wpm(wpm=result, format="week")
+            self.save_wpm(wpm=result, format="week")
             self._cleanup_data(start, end, "day")
 
     def _aggregate_last_month(self) -> None:
@@ -227,8 +223,7 @@ class DataStorage:
         result = cursor.fetchone()[0]
 
         if result:
-            if result != 0:
-                self.save_wpm(wpm=result, format="month")
+            self.save_wpm(wpm=result, format="month")
             self._cleanup_data(start, end, "week")
 
     def _cleanup_data(self, start_time, end_time, period_to_delete):
