@@ -240,3 +240,57 @@ class DataStorage:
             sql, (start_time.isoformat(), end_time.isoformat(), period_to_delete)
         )
         self._conn.commit()
+
+    def get_elapsed_data(self):
+        sql = """
+        SELECT timestamp, wpm, period FROM wpm_data
+        WHERE period = 'elapsed'
+        """
+
+        cursor = self._conn.execute(sql)
+        return cursor.fetchall()
+
+    def get_minute_data(self):
+        sql = """
+        SELECT timestamp, wpm, period FROM wpm_data
+        WHERE period = 'minute'
+        """
+
+        cursor = self._conn.execute(sql)
+        return cursor.fetchall()
+
+    def get_hour_data(self):
+        sql = """
+        SELECT timestamp, wpm, period FROM wpm_data
+        WHERE period = 'hour'
+        """
+
+        cursor = self._conn.execute(sql)
+        return cursor.fetchall()
+
+    def get_day_data(self):
+        sql = """
+        SELECT timestamp, wpm, period FROM wpm_data
+        WHERE period = 'day'
+        """
+
+        cursor = self._conn.execute(sql)
+        return cursor.fetchall()
+
+    def get_week_data(self):
+        sql = """
+        SELECT timestamp, wpm, period FROM wpm_data
+        WHERE period = 'week'
+        """
+
+        cursor = self._conn.execute(sql)
+        return cursor.fetchall()
+
+    def get_month_data(self):
+        sql = """
+        SELECT timestamp, wpm, period FROM wpm_data
+        WHERE period = 'month'
+        """
+
+        cursor = self._conn.execute(sql)
+        return cursor.fetchall()
