@@ -17,14 +17,13 @@ class KeyboardMonitor:
         with keyboard.Listener(on_press=self.on_key_press) as listener:
             listener.join()
 
-    def stop_monitoring(self): ...
-
     def on_key_press(self, key) -> None:
         if self._is_space(key):
-            self._calculator.compute_raw_wpm(
-                start_time=self._session_start_time,
-                char_count=self._session_char_count,
-            )
+            if self._session_char_count != 0:
+                self._calculator.compute_raw_wpm(
+                    start_time=self._session_start_time,
+                    char_count=self._session_char_count,
+                )
 
             self._session_start_time = None
             self._session_char_count = 0
@@ -34,8 +33,6 @@ class KeyboardMonitor:
                     self._session_start_time = time.time()
 
                 self._session_char_count += 1
-
-    def get_typing_session(self): ...
 
     def _is_space(self, key):
         if hasattr(key, "space") and self._session_start_time:
