@@ -1587,15 +1587,6 @@ wheels = [
 ]
 
 [[package]]
-name = "rumps"
-version = "0.4.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "pyobjc-framework-cocoa" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/b2/e2/2e6a47951290bd1a2831dcc50aec4b25d104c0cf00e8b7868cbd29cf3bfe/rumps-0.4.0.tar.gz", hash = "sha256:17fb33c21b54b1e25db0d71d1d793dc19dc3c0b7d8c79dc6d833d0cffc8b1596", size = 39257, upload-time = "2022-10-15T05:15:10.386Z" }
-
-[[package]]
 name = "six"
 version = "1.17.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1661,7 +1652,6 @@ dependencies = [
     { name = "matplotlib", version = "3.10.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "pynput" },
     { name = "pyqt6" },
-    { name = "rumps" },
 ]
 
 [package.optional-dependencies]
@@ -1683,7 +1673,6 @@ requires-dist = [
     { name = "pyqt6", specifier = ">=6.9.1" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0.0" },
-    { name = "rumps", specifier = ">=0.4.0" },
 ]
 provides-extras = ["dev"]
 
