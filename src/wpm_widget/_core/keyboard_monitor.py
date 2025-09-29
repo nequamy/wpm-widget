@@ -1,10 +1,17 @@
 import time
+from typing import Optional
 
 from pynput import keyboard
+
+from wpm_widget._core.wpm_calculator import WPMCalculator
 
 
 class KeyboardMonitor:
     _last_key_time = None
+    _calculator = WPMCalculator()
+
+    _session_start_time: Optional[float] = None
+    _session_char_count: int = 0
 
     def start_monitoring(self) -> None:
         with keyboard.Listener(on_press=self.on_key_press) as listener:
@@ -13,16 +20,25 @@ class KeyboardMonitor:
     def stop_monitoring(self): ...
 
     def on_key_press(self, key) -> None:
-        current_time = time.time()
+        if self._is_space(key):
+            self._calculator.compute_raw_wpm(
+                start_time=self._session_start_time,
+                char_count=self._session_char_count,
+            )
 
-        if self._last_key_time:
-            time_between_keys = current_time - self._last_key_time
-            print(f"Time between keys {time_between_keys:.3f}s")
+            self._session_start_time = None
+            self._session_char_count = 0
+        else:
+            if hasattr(key, "char") and key.char:
+                if self._session_start_time is None:
+                    self._session_start_time = time.time()
 
-        self._last_key_time = current_time
+                self._session_char_count += 1
 
     def get_typing_session(self): ...
 
+    def _is_space(self, key):
+        if hasattr(key, "space") and self._session_start_time:
+            return True
 
-monitor = KeyboardMonitor()
-monitor.start_monitoring()
+        return False
