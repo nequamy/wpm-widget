@@ -3,15 +3,16 @@ from typing import Optional
 
 from pynput import keyboard
 
-from wpm_widget._core.wpm_calculator import WPMCalculator
-
 
 class KeyboardMonitor:
     _last_key_time = None
-    _calculator = WPMCalculator()
 
     _session_start_time: Optional[float] = None
     _session_char_count: int = 0
+
+    def __init__(self, calculator, storage):
+        self._calculator = calculator
+        self._storage = storage
 
     def start_monitoring(self) -> None:
         with keyboard.Listener(on_press=self.on_key_press) as listener:
@@ -24,6 +25,8 @@ class KeyboardMonitor:
                     start_time=self._session_start_time,
                     char_count=self._session_char_count,
                 )
+
+            self._storage.save_wpm(self._calculator.get_wpm(), format="elapsed")
 
             self._session_start_time = None
             self._session_char_count = 0
